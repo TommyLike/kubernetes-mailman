@@ -1,0 +1,18 @@
+kind: Cluster
+apiVersion: kind.sigs.k8s.io/v1alpha3
+# 1 control plane node and 3 workers
+nodes:
+  # the control plane node config
+  - role: control-plane
+  # the three workers
+  - role: worker
+    # The node mapping used to export mailman website and exim4 service
+    extraPortMappings:
+    - containerPort: 30000
+      hostPort: 8000
+    - containerPort: 30080
+      hostPort: 8080
+    - containerPort: 30025
+      hostPort: 25
+  - role: worker
+  - role: worker
